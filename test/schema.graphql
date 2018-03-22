@@ -1,5 +1,5 @@
 schema {
-  query: RootQuery
+  query: Query
   mutation: RootMutation
 }
 
@@ -24,7 +24,7 @@ type User {
   events: [String]
 }
 
-type RootQuery {
+type Query {
   number: Int
   allFilms: AllFilmsObj
   sum(a: Int!, b: Int!): Int!

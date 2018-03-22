@@ -75,7 +75,7 @@ const parserOptions = {
         parserOptions,
         code: 'const x = gql`{ nonExistentQuery }`',
         errors: [{
-          message: 'Cannot query field "nonExistentQuery" on type "RootQuery".',
+          message: 'Cannot query field "nonExistentQuery" on type "Query".',
           type: 'TaggedTemplateExpression'
         }]
       },
@@ -143,7 +143,7 @@ const parserOptions = {
         parserOptions,
         code: 'const x = gql`{ nonExistentQuery }`',
         errors: [{
-          message: 'Cannot query field "nonExistentQuery" on type "RootQuery".',
+          message: 'Cannot query field "nonExistentQuery" on type "Query".',
           type: 'TaggedTemplateExpression'
         }]
       },
@@ -191,7 +191,7 @@ const parserOptions = {
         parserOptions,
         code: 'const x = myGraphQLTag`{ nonExistentQuery }`',
         errors: [{
-          message: 'Cannot query field "nonExistentQuery" on type "RootQuery".',
+          message: 'Cannot query field "nonExistentQuery" on type "Query".',
           type: 'TaggedTemplateExpression'
         }]
       },
@@ -332,7 +332,7 @@ const parserOptions = {
           });
         `,
         errors: [{
-          message: 'Cannot query field "allFilmsx" on type "RootQuery". Did you mean "allFilms"?',
+          message: 'Cannot query field "allFilmsx" on type "Query". Did you mean "allFilms"?',
           type: 'TaggedTemplateExpression',
           line: 4,
           column: 17
@@ -609,7 +609,7 @@ const parserOptions = {
         parserOptions,
         code: 'const x = absolute`{ nonExistentQuery }`',
         errors: [{
-          message: 'Cannot query field "nonExistentQuery" on type "RootQuery".',
+          message: 'Cannot query field "nonExistentQuery" on type "Query".',
           type: 'TaggedTemplateExpression'
         }]
       }
@@ -647,7 +647,7 @@ const parserOptions = {
           message: 'Cannot query field "number" on type "Query".',
           type: 'TaggedTemplateExpression',
         }, {
-          message: 'Cannot query field "hero" on type "RootQuery".',
+          message: 'Cannot query field "hero" on type "Query".',
           type: 'TaggedTemplateExpression',
         }],
       },
@@ -694,7 +694,7 @@ const validatorCases = {
     fail: 'const x = gql`{ sum(c: 1, d: 2) }`',
     alsoBreaks: ['ProvidedNonNullArguments'],
     errors: [{
-      message: 'Unknown argument "c" on field "sum" of type "RootQuery". Did you mean "a" or "b"?',
+      message: 'Unknown argument "c" on field "sum" of type "Query". Did you mean "a" or "b"?',
       type: 'TaggedTemplateExpression',
     }],
   },
@@ -766,8 +766,8 @@ const validatorCases = {
     }],
   },
   'OverlappingFieldsCanBeMerged': {
-    pass: 'const x = gql`fragment Sum on RootQuery { sum(a: 1, b: 2) } { ...Sum, sum(a: 1, b: 2) }`',
-    fail: 'const x = gql`fragment Sum on RootQuery { sum(a: 1, b: 2) } { ...Sum, sum(a: 2, b: 3) }`',
+    pass: 'const x = gql`fragment Sum on Query { sum(a: 1, b: 2) } { ...Sum, sum(a: 1, b: 2) }`',
+    fail: 'const x = gql`fragment Sum on Query { sum(a: 1, b: 2) } { ...Sum, sum(a: 2, b: 3) }`',
     errors: [{
       message: 'Fields "sum" conflict because they have differing arguments. Use different aliases on the fields to fetch both if this was intentional.',
       type: 'TaggedTemplateExpression',
